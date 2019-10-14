@@ -1,6 +1,7 @@
 import { createAppContainer, createStackNavigator } from 'react-navigation'
 
 import ExampleScreen from 'App/Containers/Example/ExampleScreen'
+import FirebaseTestScreen from 'App/Containers/FirebaseTest/FirebaseTestScreen'
 import SplashScreen from 'App/Containers/SplashScreen/SplashScreen'
 
 /**
@@ -16,6 +17,8 @@ const StackNavigator = createStackNavigator(
     // The main application screen is our "ExampleScreen". Feel free to replace it with your
     // own screen and remove the example.
     MainScreen: ExampleScreen,
+    FirebaseTestScreen: FirebaseTestScreen,
+
   },
   {
     // By default the application will show the splash screen

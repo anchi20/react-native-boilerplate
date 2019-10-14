@@ -12,6 +12,8 @@ import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 
 import java.util.List;
+import io.invertase.firebase.analytics.ReactNativeFirebaseAnalyticsPackage;
+
 
 public class MainApplication extends Application implements ReactApplication {
 

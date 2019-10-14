@@ -147,10 +147,6 @@ If your application fails to start after using the `yarn run rename` command, pl
 
 This project is released under the [MIT License](LICENSE).
 
-## About us
-
-[TheCodingMachine](https://www.thecodingmachine.com/) is a web and mobile agency based in Paris and Lyon, France. We are [constantly looking for new developers and team leaders](https://www.thecodingmachine.com/nous-rejoindre/) and we love [working with freelancers](https://coders.thecodingmachine.com/). You'll find [an overview of all our open source projects on our website](https://thecodingmachine.io/open-source) and on [Github](https://github.com/thecodingmachine).
-
 ## Alternative boilerplates
 
 We looked into existing boilerplates before starting this project, and while many of them are awesome, we did not find what we were looking for.

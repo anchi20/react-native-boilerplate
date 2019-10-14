@@ -3,6 +3,8 @@ import { Platform, Text, View, Button, ActivityIndicator, Image } from 'react-na
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import ExampleActions from 'App/Stores/Example/Actions'
+import FirebaseActions from 'App/Stores/FirebaseTest/Actions'
+
 import { liveInEurope } from 'App/Stores/Example/Selectors'
 import Style from './ExampleScreenStyle'
 import { Images } from 'App/Theme'
@@ -50,6 +52,8 @@ class ExampleScreen extends React.Component {
               </View>
             )}
             <Button onPress={() => this._fetchUser()} title="Refresh" />
+            <Text>  </Text>
+            <Button onPress={() => this._goToFirebase()} title="Go to test Firebase" />
           </View>
         )}
       </View>
@@ -59,6 +63,10 @@ class ExampleScreen extends React.Component {
   _fetchUser() {
     this.props.fetchUser()
   }
+
+  _goToFirebase() {
+    this.props.goToFirebasePage()
+  }
 }
 
 ExampleScreen.propTypes = {
@@ -66,6 +74,7 @@ ExampleScreen.propTypes = {
   userIsLoading: PropTypes.bool,
   userErrorMessage: PropTypes.string,
   fetchUser: PropTypes.func,
+  goToFirebase: PropTypes.func,
   liveInEurope: PropTypes.bool,
 }
 
@@ -78,6 +87,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUser: () => dispatch(ExampleActions.fetchUser()),
+  goToFirebasePage: () => dispatch(FirebaseActions.goToFirebasePage()),
 })
 
 export default connect(

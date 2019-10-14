@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "322273148143",
+    "firebase_url": "https://anchieatrn.firebaseio.com",
+    "project_id": "anchieatrn",
+    "storage_bucket": "anchieatrn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322273148143:android:49244f6d86bc426164ef1a",
+        "android_client_info": {
+          "package_name": "com.eatrn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322273148143-u4aci5bc0hl7hu56ni75hlhvqeqc78lm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAy3Lwg99g_CdzaFqOkr43gY0OdP8nSRs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "322273148143-u4aci5bc0hl7hu56ni75hlhvqeqc78lm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
