@@ -1,13 +1,14 @@
 import React from 'react'
-import { Platform, Text, View, Button, ActivityIndicator, Image } from 'react-native'
+import { Platform, Text, View, Button, ActivityIndicator, Image, Picker } from 'react-native'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import ExampleActions from 'App/Stores/Example/Actions'
 import FirebaseActions from 'App/Stores/FirebaseTest/Actions'
-
+import ChatActions from 'App/Stores/ChatTest/Actions'
 import { liveInEurope } from 'App/Stores/Example/Selectors'
 import Style from './ExampleScreenStyle'
 import { Images } from 'App/Theme'
+import RNPickerSelect from 'react-native-picker-select';
 
 /**
  * This is an example of a container component.
@@ -22,6 +23,10 @@ const instructions = Platform.select({
 })
 
 class ExampleScreen extends React.Component {
+
+  state = {
+    language: 'js'
+  }
   componentDidMount() {
     this._fetchUser()
   }
@@ -36,6 +41,7 @@ class ExampleScreen extends React.Component {
             <View style={Style.logoContainer}>
               <Image style={Style.logo} source={Images.logo} resizeMode={'contain'} />
             </View>
+            
             <Text style={Style.text}>To get started, edit App.js</Text>
             <Text style={Style.instructions}>{instructions}</Text>
             {this.props.userErrorMessage ? (
@@ -53,7 +59,25 @@ class ExampleScreen extends React.Component {
             )}
             <Button onPress={() => this._fetchUser()} title="Refresh" />
             <Text>  </Text>
-            <Button onPress={() => this._goToFirebase()} title="Go to test Firebase" />
+            <Button onPress={() => this._goToFirebasePage()} title="Go to test Firebase" />
+            <Text>  </Text>
+            <Button onPress={() => this._goToChatPage()} title="Go to test Chat" />
+            {/* <Picker
+              style={{width: 200}}
+              selectedValue={this.state.language || 'js'}
+              onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
+              <Picker.Item label="Java" value="java"  />
+              <Picker.Item label="JavaScript" value="js" />
+            </Picker>
+
+            <RNPickerSelect
+              onValueChange={(value) => console.log(value)}
+              items={[
+                  { label: 'Football', value: 'football' },
+                  { label: 'Baseball', value: 'baseball' },
+                  { label: 'Hockey', value: 'hockey' },
+              ]}
+            /> */}
           </View>
         )}
       </View>
@@ -64,8 +88,12 @@ class ExampleScreen extends React.Component {
     this.props.fetchUser()
   }
 
-  _goToFirebase() {
+  _goToFirebasePage() {
     this.props.goToFirebasePage()
+  }
+
+  _goToChatPage() {
+    this.props.goToChatPage()
   }
 }
 
@@ -75,6 +103,7 @@ ExampleScreen.propTypes = {
   userErrorMessage: PropTypes.string,
   fetchUser: PropTypes.func,
   goToFirebase: PropTypes.func,
+  goToChatPage: PropTypes.func,
   liveInEurope: PropTypes.bool,
 }
 
@@ -88,6 +117,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchUser: () => dispatch(ExampleActions.fetchUser()),
   goToFirebasePage: () => dispatch(FirebaseActions.goToFirebasePage()),
+  goToChatPage: ()=> dispatch(ChatActions.goToChatPage())
 })
 
 export default connect(

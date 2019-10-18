@@ -6,10 +6,12 @@ import ExampleActions from 'App/Stores/Example/Actions'
 import FirebaseActions from 'App/Stores/FirebaseTest/Actions'
 
 import { liveInEurope } from 'App/Stores/Example/Selectors'
-import Style from './FirebaseTestScreenStyle'
+import Style from './ChatScreenStyle'
 import { Images } from 'App/Theme'
 import TextField from './../../Components/TextField'
 import { trackScreenView, onCustomEvent } from 'App/Services/FirebaseService';
+import ChatBot from 'react-native-chatbot';
+
 
 
 /**
@@ -19,45 +21,67 @@ import { trackScreenView, onCustomEvent } from 'App/Services/FirebaseService';
  * Feel free to remove it.
  */
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\nCmd+D or shake for dev menu.',
-  android: 'Double tap R on your keyboard to reload,\nShake or press menu button for dev menu.',
-})
 
-class FirebaseTestScreen extends React.Component {
+class ChatScreen extends React.Component {
     
   // Track a screen view once the component has mounted
 
   state = {
     customEventText : '',
-  }
+  };
+
+  steps = [
+    {
+      id: '0',
+      message: 'Welcome to react chatbot! What is ur name?',
+      trigger: '2',
+    },
+    {
+      id: '1',
+      message: 'Bye!',
+      end: true,
+    },
+    {
+      id: '2',
+      user: true,
+      inputAttributes: {
+        keyboardType: 'email-address'
+      },
+      trigger: '3',
+    },
+    {
+      id: '3',
+      options: [
+        { value: 1, label: 'Number 1', trigger: '3' },
+        { value: 2, label: 'Number 2', trigger: '2' },
+        { value: 3, label: 'Number 3', trigger: '1' },
+      ],
+      trigger: '1',
+    },
+    
+  ];
+
   componentDidMount() {
-    trackScreenView('FirebaseTestScreen');
+    trackScreenView('ChatScreen');
   }
 
   render() {
     return (
       <View style={Style.container}>
-        <Text>'Test Firebase Here'</Text>
-        <TextField onChangeText = {(text)=> this.setState({'customEventText': text})}/>
-        <Button onPress={() => onCustomEvent(this.state.customEventText)} title="Send Custom (FirebaseTestScreen)" />
+        <Text>'Chat Container'</Text>
+        <ChatBot 
+          steps={this.steps}
+          submitButtonContent={'Send'} 
+        />
       </View>
     )
   }
 }
 
-FirebaseTestScreen.propTypes = {
-  user: PropTypes.object,
-  userIsLoading: PropTypes.bool,
-  userErrorMessage: PropTypes.string,
-  liveInEurope: PropTypes.bool,
+ChatScreen.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.example.user,
-  userIsLoading: state.example.userIsLoading,
-  userErrorMessage: state.example.userErrorMessage,
-  liveInEurope: liveInEurope(state),
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -66,4 +90,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FirebaseTestScreen)
+)(ChatScreen)
